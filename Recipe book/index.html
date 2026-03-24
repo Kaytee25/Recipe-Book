@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Book</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="logo">Recipe Book</div>
+      <div class="nav-links">
+        <a href="#categories">Categories</a>
+        <a href="#featured">Featured</a>
+        <a href="#add-recipe">Add a Recipe</a>
+        <a href="#ratings">Chef Ratings</a>
+      </div>
+      <button class="menu-btn" aria-label="Open menu">☰</button>
+    </nav>
+
+    <div class="hero-content">
+      <h1>Cook, Share, and Rate Delicious Recipes</h1>
+      <p>Explore curated meals by chef, cuisine, and category. Follow step-by-step guides, add your own recipes, and rate favorites.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#featured">Browse Recipes</a>
+        <a class="btn ghost" href="#add-recipe">Add Your Recipe</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <strong>40+</strong>
+          <span>Recipes</span>
+        </div>
+        <div>
+          <strong>12</strong>
+          <span>Chefs</span>
+        </div>
+        <div>
+          <strong>6</strong>
+          <span>Categories</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="categories" class="section">
+      <div class="section-header">
+        <h2>Food Categories</h2>
+        <p>Choose a category to filter the recipe collection.</p>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+
+    <section id="featured" class="section">
+      <div class="section-header">
+        <h2>Featured Recipes</h2>
+        <p>Explore step-by-step guides with photos and chef notes.</p>
+      </div>
+      <div class="filters">
+        <input type="search" id="searchInput" placeholder="Search recipes or chefs..." />
+        <select id="categoryFilter" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+        </select>
+        <select id="sortFilter" aria-label="Sort recipes">
+          <option value="rating">Sort: Highest Rated</option>
+          <option value="time">Sort: Shortest Time</option>
+          <option value="name">Sort: Name (A–Z)</option>
+        </select>
+      </div>
+      <div id="recipeGrid" class="recipe-grid"></div>
+    </section>
+
+    <section id="add-recipe" class="section add-recipe">
+      <div class="section-header">
+        <h2>Add a Recipe</h2>
+        <p>Share a recipe you know. It will appear instantly in the book.</p>
+      </div>
+      <form id="recipeForm" class="recipe-form">
+        <div class="form-row">
+          <label>
+            Recipe Name
+            <input type="text" name="title" required />
+          </label>
+          <label>
+            Chef Name
+            <input type="text" name="chef" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            Category
+            <select name="category" required>
+              <option value="">Select</option>
+            </select>
+          </label>
+          <label>
+            Cooking Time (minutes)
+            <input type="number" name="time" min="5" max="240" required />
+          </label>
+        </div>
+        <label>
+          Image URL
+          <input type="url" name="image" placeholder="https://..." required />
+        </label>
+        <label>
+          Ingredients (comma-separated)
+          <textarea name="ingredients" rows="2" required></textarea>
+        </label>
+        <label>
+          Step-by-step Guide (one step per line)
+          <textarea name="steps" rows="4" required></textarea>
+        </label>
+        <div class="form-row">
+          <label>
+            Difficulty
+            <select name="difficulty" required>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Advanced</option>
+            </select>
+          </label>
+          <label>
+            Initial Rating (1-5)
+            <input type="number" name="rating" min="1" max="5" value="4" required />
+          </label>
+        </div>
+        <button class="btn primary" type="submit">Add Recipe</button>
+      </form>
+    </section>
+
+    <section id="ratings" class="section ratings">
+      <div class="section-header">
+        <h2>Chef Ratings</h2>
+        <p>Top-rated chefs from community votes.</p>
+      </div>
+      <div id="chefGrid" class="chef-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Recipe Book © 2026. Crafted with love for home chefs.</p>
+  </footer>
+
+  <div class="modal" id="recipeModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
